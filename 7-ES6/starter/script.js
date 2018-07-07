@@ -265,3 +265,99 @@ g = ages.findIndex((e) => {
 })
 
 console.log(g);
+
+
+
+////////////////////////////
+//Spread Operator
+
+// collapses an array into it's individual parts. It is unclear hte form it takes in the meantime. 
+function addFourAges (a,b,c,d) {
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18,30,12,21);
+console.log("sum1: ", sum1);
+
+// ES5
+var ages = [18,30,12,21];
+var sum2 = addFourAges.apply(null, ages);
+console.log("sum2: ", sum2);
+console.log(addFourAges(...ages));
+
+const h = document.querySelector('h1');
+const daBoxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+console.log(all);
+
+all.forEach((e) => {
+    e.style.color = 'purple';
+});
+
+
+
+
+/////////////////////////////
+//Rest Parameters
+
+// ES5
+//in order to use an unspecified number of arguments in JS, leave the argument field empty
+//and use the arguments keyword. 
+
+function isFullAge5() {
+    var argsArr = Array.prototype.slice.call(arguments)
+    console.log(argsArr);
+    argsArr.forEach(function(e) {
+        console.log((2016 - e) >= 18);
+    })
+}
+
+// isFullAge5(1990,1999, 1965);
+// isFullAge5(1990,1999, 1965, 2016, 1987);
+
+// ES6
+//This construction takes whever number of arguments it receives and collapses it into an array. 
+
+function isFullAge6 (...years) {
+    years.forEach((e) => {
+        console.log( 2016 - e >= 18);
+    })
+}
+
+isFullAge6(1990,1999, 1965);
+
+
+/////////////////////////////////
+// Default Parameters
+
+function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+
+    lastName === undefined ? lastName = 'Smith' : lastName;
+    nationality === undefined ? nationality = 'American' : nationality;
+
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality;
+};
+
+var john = new SmithPerson('John', 1990);
+
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+
+// ES6
+
+function SchreckPerson(firstName, yearOfBirth, lastName = 'Schreck', nationality = 'American') {
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality;
+}
+
+var aaron = new SchreckPerson('Aaron', 1993);
+var ben = new SchreckPerson('Ben', 1960, 'Vandergrift', 'Japanese');
+
+
+///////////////////////////////
+//Maps
+
